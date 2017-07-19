@@ -1,5 +1,5 @@
 # patternfly-react-demo-app
-The PatternFly React demo app serves as a demo for building your production app with [Patternfly](https://github.com/patternfly/patternfly), [PatternFly React](https://github.com/patternfly/patternfly-react), [Redux](https://github.com/reactjs/redux), [Redux Saga](https://github.com/redux-saga/redux-saga), and [React Router](https://github.com/ReactTraining/react-router).
+The PatternFly React demo app serves as a demo for building your production app with [Patternfly](https://github.com/patternfly/patternfly), [PatternFly React](https://github.com/patternfly/patternfly-react), [Patternfly WebComponents](https://github.com/patternfly-webcomponents/patternfly-webcomponents/), [Redux](https://github.com/reactjs/redux), [Redux Saga](https://github.com/redux-saga/redux-saga), and [React Router](https://github.com/ReactTraining/react-router).
 
 Running Demo: 
 https://patternfly-react-demo-app.firebaseapp.com/
