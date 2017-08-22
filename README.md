@@ -6,6 +6,8 @@ https://patternfly-react-demo-app.firebaseapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and [Typescript](https://github.com/wmonk/create-react-app-typescript).
 
+Looking for [Flow.js](https://flow.org/)/ES6? See our [flowjs branch](https://github.com/patternfly/patternfly-react-demo-app/tree/flowjs).
+
 By default, the production build gives an offline-first [Progressive Web App](https://goo.gl/KwvDNy). [Code Splitting](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) is also used via [dynamic import()](http://2ality.com/2017/01/import-operator.html#loading-code-on-demand) to split your code into small chunks which you can load on demand.
 
 The most recent version of the create-react-app guide can be found [here](https://github.com/facebookincubator/create-react-app#user-guide) for further customizations to this boilerplate.
