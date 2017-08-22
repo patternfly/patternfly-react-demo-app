@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "prettier/prettier": ["error", { "semi": false, "singleQuote": true }],
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": ["off", { "aspects": ["invalidHref"] }],
+    "flowtype/no-types-missing-file-annotation": 0,
+    "react/prop-types": 0,
+    "no-undef": 0
+  },
+  "extends": [
+    "standard",
+    "standard-react",
+    "standard-jsx",
+    "prettier",
+    "prettier/react",
+    "plugin:flowtype/recommended"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "ecmaFeatures": {
+    "jsx": true,
+    "experimentalObjectRestSpread": true
+  },
+  "plugins": ["prettier", "react", "flowtype"],
+  "parser": "babel-eslint"
+}
