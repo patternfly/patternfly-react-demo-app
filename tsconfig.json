@@ -20,7 +20,8 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["./typings/*"]
+      "*": ["./typings/*"],
+      "react": ["node_modules/@types/react"]
     }
   },
   "exclude": [
