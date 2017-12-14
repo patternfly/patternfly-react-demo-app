@@ -13,7 +13,9 @@
 /build
 
 # compiled patternfly assets
-src/css
+src/css/*
+!src/css/.gitkeep 
+src/img
 src/fonts
 src/less/*
 !src/less/index.less
