@@ -1,14 +1,12 @@
 # patternfly-react-demo-app
-The PatternFly React demo app serves as a demo for building your production app with [Patternfly](https://github.com/patternfly/patternfly), [PatternFly React](https://github.com/patternfly/patternfly-react), [Patternfly WebComponents](https://github.com/patternfly-webcomponents/patternfly-webcomponents/), [Redux](https://github.com/reactjs/redux), [Redux Saga](https://github.com/redux-saga/redux-saga), and [React Router](https://github.com/ReactTraining/react-router).
+The PatternFly React demo app serves as a demo for building your production app with [Patternfly](https://github.com/patternfly/patternfly), [PatternFly React](https://github.com/patternfly/patternfly-react), [Redux](https://github.com/reactjs/redux), [Redux Saga](https://github.com/redux-saga/redux-saga), and [React Router](https://github.com/ReactTraining/react-router).
 
 Running Demo: 
 https://patternfly-react-demo-app.firebaseapp.com/
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and [Typescript](https://github.com/wmonk/create-react-app-typescript).
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Looking for [Flow.js](https://flow.org/)/ES6? See our [flowjs branch](https://github.com/patternfly/patternfly-react-demo-app/tree/flowjs).
-
-By default, the production build gives an offline-first [Progressive Web App](https://goo.gl/KwvDNy). [Code Splitting](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) is also used via [dynamic import()](http://2ality.com/2017/01/import-operator.html#loading-code-on-demand) to split your code into small chunks which you can load on demand.
+By default, the production build gives an offline-first [Progressive Web App](https://goo.gl/KwvDNy). [Code Splitting](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) is also used via [dynamic import()](http://2ality.com/2017/01/import-operator.html#loading-code-on-demand) to split your code into small chunks which you can load on demand. This follows the [Serverless Stack](https://github.com/AnomalyInnovations/serverless-stack-demo-client/tree/code-splitting-in-create-react-app) guide on code splitting if you'd like to read more.
 
 The most recent version of the create-react-app guide can be found [here](https://github.com/facebookincubator/create-react-app#user-guide) for further customizations to this boilerplate.
 
@@ -31,13 +29,11 @@ This project has the following structure:
 │   ├── /css/                   # Compiled LESS/CSS to be included in Webpack bundle
 │   ├── /fonts/                 # Fonts to be included in Webpack bundle
 │   ├── /img/                   # Images to be included in Webpack bundle
-│   ├── /less/                  # LESS preprocessed styles
 │   ├── /models/                # Typescript models used in Redux and throughout app
 │   ├── /pages/                 # Reusable tsx page templates used in various routes
 │   ├── /reducers/              # Redux reducers
 │   ├── /sagas/                 # Redux sagas
-│   ├── /typings/               # Custom typings for es6/non-typescript libraries
-│   ├── /App.less               # Application LESS
+│   ├── /App.scss               # Application SCSS
 │   ├── /App.test.tsx           # Application tests written in Jest
 │   ├── /App.tsx                # Application UI Component
 │   ├── /index.tsx              # Main React container entry
@@ -46,9 +42,13 @@ This project has the following structure:
 │   ├── /Routes.tsx             # React Router application routes
 │── package-lock.json           # NPM5 package lock file
 │── package.json                # The list of project dependencies and NPM scripts
-└── tsconfig.json               # Typescript compiler configurations
-└── tslint.json                 # Typescript lint options
 ```
+
+## Styling w/ Sass and Patternfly
+PatternFly Sass was added via the [Create React App Preprocessor Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc). All Patternfly build assets are copied to `src` so that they may be included in the default
+create-react-app build. The `App.scss` file will include all PatternFly Sass along with PatternFly React Sass extensions. Once Sass compiles, the resulting CSS can be found in `src/css/App.css`.
+
+**Note** Only static assets which are `import`'ed into your application will be included in your resulting build output. I.e. `import './css/App.css';` will ensure `App.css` is included.
 
 ## Available Scripts
 
@@ -83,13 +83,6 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Styling w/ LESS and Patternfly
-All Patternfly build assets are copied to `src` so that they may be included in the default
-create-react-app build. You can choose to include/remove any Patternfly LESS by simply changing `src/less/index.less`. This file also includes `App.less` after all Patternfly LESS
-has been imported. Once LESS compiles, the resulting CSS can be found in `src/css/App.css`.
-
-**Note** Only static assets which are `import`'ed into your application will be included in your resulting build output. I.e. `import './css/App.css';` will ensure `App.css` is included.
 
 ## Do you have a question?
 There are a few things that can be done to resolve any questions or problems you might have.

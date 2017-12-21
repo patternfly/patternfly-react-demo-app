@@ -1,7 +1,11 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# ide's
-.vscode
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # dependencies
 /node_modules
@@ -15,10 +19,12 @@
 # compiled patternfly assets
 src/css/*
 !src/css/.gitkeep 
-src/img
-src/fonts
-src/less/*
-!src/less/index.less
+src/img/*
+!src/img/.gitkeep 
+src/fonts/*
+!src/fonts/.gitkeep
+src/sass/*
+!src/sass/index.sass
 
 # misc
 .DS_Store
