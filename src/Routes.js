@@ -56,7 +56,7 @@ export const Routes = (props: Props) => {
       />
 
       {/* Finally, catch all unmatched routes */}
-      <Route component={asyncComponent(importNotFound)} />
+      <Route component={importNotFound} />
     </Switch>
   );
 };
