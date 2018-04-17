@@ -37,10 +37,10 @@
   },
   "sassIncludes": {
     "src": "--include-path src",
-    "patternfly": "--include-path node_modules/patternfly/dist/sass",
     "patternflyReact": "--include-path node_modules/patternfly-react/dist/sass",
-    "bootstrap": "--include-path node_modules/patternfly/node_modules/bootstrap-sass/assets/stylesheets",
-    "fontAwesome": "--include-path node_modules/patternfly/node_modules/font-awesome-sass/assets/stylesheets"
+    "patternfly": "--include-path node_modules/patternfly/dist/sass",
+    "bootstrap": "--include-path node_modules/bootstrap-sass/assets/stylesheets",
+    "fontAwesome": "--include-path node_modules/font-awesome-sass/assets/stylesheets"
   },
   "scripts": {
     "copy-fonts": "cp -r node_modules/patternfly/dist/fonts src/",
