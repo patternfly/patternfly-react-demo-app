@@ -9,6 +9,7 @@ const importIpsum = asyncComponent(() => import('./pages/Ipsum'));
 const importDolor = asyncComponent(() => import('./pages/Dolor'));
 const importAmet = asyncComponent(() => import('./pages/Amet'));
 const importOrbis = asyncComponent(() => import('./pages/Orbis'));
+const importNada = asyncComponent(() => import('./pages/Nada'));
 const importLogin = asyncComponent(() => import('./pages/Login'));
 const importNotFound = asyncComponent(() => import('./pages/NotFound'));
 
@@ -54,7 +55,12 @@ export const Routes = (props: Props) => {
         component={importOrbis}
         props={props.childProps}
       />
-
+      <AuthenticatedRoute
+        path="/nada"
+        exact
+        component={importNada}
+        props={props.childProps}
+      />
       {/* Finally, catch all unmatched routes */}
       <Route component={importNotFound} />
     </Switch>

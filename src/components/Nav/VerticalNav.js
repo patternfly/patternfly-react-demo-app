@@ -80,6 +80,19 @@ export const VerticalNav = props => {
           />
           <span className="list-group-item-value">Orbis</span>
         </RouteNavItem>
+
+        <RouteNavItem
+          href="/nada"
+          onClick={props.handleNavClick}
+          className="list-group-item"
+        >
+          <span
+            className="pficon pficon-add-circle-o"
+            data-toggle="tooltip"
+            title="Nada"
+          />
+          <span className="list-group-item-value">Nada</span>
+        </RouteNavItem>
       </ul>
     </div>
   );
