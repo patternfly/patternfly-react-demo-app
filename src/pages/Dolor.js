@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Grid } from 'patternfly-react';
 import { EmptyState } from '../components/EmptyState/EmptyState';
 
-class DolorPage extends React.Component<RouteComponentProps<any>, {}> {
+class DolorPage extends React.Component {
   render() {
     return (
-      <div className="container-fluid container-pf-nav-pf-vertical">
+      <Grid fluid className="container-pf-nav-pf-vertical">
         <EmptyState title="Dolor Page" />
-      </div>
+      </Grid>
     );
   }
 }
 
-export default withRouter(DolorPage);
+export default DolorPage;
