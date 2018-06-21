@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "cross-var": "^1.1.0",
+    "ncp": "^2.0.0",
     "patternfly-react": "^1.6.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -43,9 +45,9 @@
     "fontAwesome": "--include-path node_modules/font-awesome-sass/assets/stylesheets"
   },
   "scripts": {
-    "copy-fonts": "cp -r node_modules/patternfly/dist/fonts src/",
-    "copy-img": "cp -r node_modules/patternfly/dist/img src/",
-    "build-css": "node-sass-chokidar src/App.scss --output-style compressed $npm_package_sassIncludes_src $npm_package_sassIncludes_patternfly $npm_package_sassIncludes_patternflyReact $npm_package_sassIncludes_bootstrap $npm_package_sassIncludes_fontAwesome -o src/css",
+    "copy-fonts": "ncp node_modules/patternfly/dist/fonts src/fonts",
+    "copy-img": "ncp node_modules/patternfly/dist/img src/img",
+    "build-css": "cross-var \"node-sass-chokidar src/App.scss --output-style compressed $npm_package_sassIncludes_src $npm_package_sassIncludes_patternfly $npm_package_sassIncludes_patternflyReact $npm_package_sassIncludes_bootstrap $npm_package_sassIncludes_fontAwesome -o src/css\"",
     "watch-css": "npm run build-css && npm run build-css -- --watch --recursive",
     "start": "react-scripts start",
     "build": "npm run copy-fonts && npm run copy-img && npm run build-css && react-scripts build",
