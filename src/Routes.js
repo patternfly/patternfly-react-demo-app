@@ -11,7 +11,7 @@ const routes = () => [
   {
     iconClass: 'fa fa-dashboard',
     title: 'Ipsum',
-    to: '/ipsum',
+    to: '/',
     component: Ipsum,
     subItems: [
       {

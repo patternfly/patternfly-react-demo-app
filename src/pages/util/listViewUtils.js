@@ -4,8 +4,10 @@ import classNames from 'classnames';
 
 export const renderActions = (actions, rowNum) => (
   <div>
-    {actions.map(({ label, fn }) => (
-      <Button onClick={() => fn(rowNum + 1)}>{label}</Button>
+    {actions.map(({ label, fn }, index) => (
+      <Button key={index} onClick={() => fn(rowNum + 1)}>
+        {label}
+      </Button>
     ))}
   </div>
 );

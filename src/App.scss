@@ -1,9 +1,9 @@
 /**
   Third Party / Dependency imports here
 */
-$font-path: '../fonts/';
-$img-path: '../img/';
-$icon-font-path: '../fonts/';
+$font-path: './fonts/';
+$img-path: './img/';
+$icon-font-path: './fonts/';
 
 /**
   Patternfly Sass
@@ -23,6 +23,16 @@ $icon-font-path: '../fonts/';
   &:focus,
   &:hover {
     background-color: transparent;
+  }
+}
+
+.breadcrumb {
+  margin-bottom: 10px;
+}
+
+.navbar-pf-vertical {
+  .nav .nav-item-iconic > .pficon-user {
+    padding-right: 7px;
   }
 }
 

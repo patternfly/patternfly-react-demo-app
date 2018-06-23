@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { Grid } from 'patternfly-react';
-import { EmptyState } from '../components/EmptyState/EmptyState';
+import { Breadcrumb, Grid } from 'patternfly-react';
+import PaginatedTableView from '../components/PaginatedTableView';
 
-class Ipsum1APage extends React.Component {
-  render() {
-    return (
-      <Grid fluid className="container-pf-nav-pf-vertical">
-        <EmptyState title="Ipsum 1A Page" />
-      </Grid>
-    );
-  }
-}
+const Ipsum1APage = () => (
+  <Grid fluid className="container-pf-nav-pf-vertical">
+    <Grid.Row className="toolbar-pf">
+      <Grid.Col xs={12}>
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">Ipsum</Breadcrumb.Item>
+          <Breadcrumb.Item active>Ipsum 1A</Breadcrumb.Item>
+        </Breadcrumb>
+      </Grid.Col>
+    </Grid.Row>
+    <PaginatedTableView />
+  </Grid>
+);
 
 export default Ipsum1APage;

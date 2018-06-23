@@ -1,9 +1,22 @@
-import * as React from 'react';
-import { Redirect, withRouter } from 'react-router';
-import { Route } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import {
+  VerticalNav,
+  VerticalNavItem,
+  VerticalNavSecondaryItem,
+  VerticalNavMasthead,
+  VerticalNavBrand,
+  VerticalNavIconBar,
+  Dropdown,
+  Icon,
+  MenuItem
+} from 'patternfly-react';
+import pfLogo from 'patternfly/dist/img/logo-alt.svg';
+import pfBrand from 'patternfly/dist/img/brand-alt.svg';
 import { routes } from './routes';
-import { VerticalNav, Dropdown, Icon, MenuItem } from 'patternfly-react';
-import './css/App.css';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
@@ -13,33 +26,41 @@ class App extends React.Component {
   }
   handleNavClick = (event: Event) => {
     event.preventDefault();
-    let target = (event.currentTarget: any);
+    const target = (event.currentTarget: any);
+    const { history } = this.props;
     if (target.getAttribute) {
-      let href = target.getAttribute('href');
-      this.props.history.push(href);
+      const href = target.getAttribute('href');
+      history.push(href);
     }
   };
 
   renderContent = () => {
-    const { location } = this.props;
-    return this.menu.map((item, index) => {
-      return (
-        <React.Fragment>
-          <Route key={index} exact path={item.to} component={item.component} />
-          {item.subItems &&
-            item.subItems.map((secondaryItem, subIndex) => {
-              return (
-                <Route
-                  key={subIndex}
-                  exact
-                  path={secondaryItem.to}
-                  component={secondaryItem.component}
-                />
-              );
-            })}
-        </React.Fragment>
+    const allRoutes = [];
+    this.menu.map((item, index) => {
+      allRoutes.push(
+        <Route key={index} exact path={item.to} component={item.component} />
       );
+      if (item.subItems) {
+        item.subItems.map((secondaryItem, subIndex) =>
+          allRoutes.push(
+            <Route
+              key={subIndex}
+              exact
+              path={secondaryItem.to}
+              component={secondaryItem.component}
+            />
+          )
+        );
+      }
+      return allRoutes;
     });
+
+    return (
+      <Switch>
+        {allRoutes}
+        <Redirect from="*" to="/" key="default-route" />
+      </Switch>
+    );
   };
 
   navigateTo = path => {
@@ -47,80 +68,86 @@ class App extends React.Component {
     history.push(path);
   };
 
-  renderMenuItems = () => {
+  render() {
     const { location } = this.props;
     const activeItem = this.menu.find(
       item => location.pathname.indexOf(item.to) > -1
     );
 
-    return this.menu.map(item => {
-      return (
-        <VerticalNav.Item
-          key={item.to}
-          title={item.title}
-          iconClass={item.iconClass}
-          active={item === activeItem}
-          onClick={() => this.navigateTo(item.to)}
-        >
-          {item.subItems &&
-            item.subItems.map(secondaryItem => {
-              return (
-                <VerticalNav.SecondaryItem
-                  key={secondaryItem.to}
-                  title={secondaryItem.title}
-                  iconClass={secondaryItem.iconClass}
-                  active={secondaryItem.to === location.pathname}
-                  onClick={() => this.navigateTo(secondaryItem.to)}
-                />
-              );
-            })}
-        </VerticalNav.Item>
-      );
-    });
-  };
-
-  render() {
-    return (
-      <div
-        className={'layout-pf layout-pf-fixed'}
-        style={{
-          height: '100vh',
-          paddingTop: 60,
-          transform: 'translateZ(0px)'
-        }}
+    const vertNavItems = this.menu.map(item => (
+      <VerticalNavItem
+        key={item.to}
+        title={item.title}
+        iconClass={item.iconClass}
+        active={item === activeItem}
+        onClick={() => this.navigateTo(item.to)}
       >
+        {item.subItems &&
+          item.subItems.map(secondaryItem => (
+            <VerticalNavSecondaryItem
+              key={secondaryItem.to}
+              title={secondaryItem.title}
+              iconClass={secondaryItem.iconClass}
+              active={secondaryItem.to === location.pathname}
+              onClick={() => this.navigateTo(secondaryItem.to)}
+            />
+          ))}
+      </VerticalNavItem>
+    ));
+
+    const dropdownComponentClass = props => (
+      <li className={props.className}>{props.children}</li>
+    );
+
+    return (
+      <React.Fragment>
         <VerticalNav persistentSecondary={false}>
-          <VerticalNav.Masthead>
-            <VerticalNav.Brand titleImg="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.51.0/img/brand-alt.svg" iconImg="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.51.0/img/logo-alt.svg"/>
-            <VerticalNav.IconBar>
-              <Dropdown componentClass="li" id="help">
-                <Dropdown.Toggle useAnchor className="nav-item-iconic">
+          <VerticalNavMasthead>
+            <VerticalNavBrand titleImg={pfBrand} iconImg={pfLogo} />
+            <VerticalNavIconBar>
+              <Dropdown componentClass={dropdownComponentClass} id="help">
+                <Dropdown.Toggle
+                  className="nav-item-iconic"
+                  bsStyle="link"
+                  noCaret
+                >
                   <Icon type="pf" name="help" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <MenuItem>Help</MenuItem>
-                  <MenuItem>About</MenuItem>
+                  <MenuItem eventKey="1">Help</MenuItem>
+                  <MenuItem eventKey="2">About</MenuItem>
                 </Dropdown.Menu>
               </Dropdown>
-              <Dropdown componentClass="li" id="user">
-                <Dropdown.Toggle useAnchor className="nav-item-iconic">
-                  <Icon type="pf" name="user" /> Brian Johnson
+              <Dropdown componentClass={dropdownComponentClass} id="user">
+                <Dropdown.Toggle className="nav-item-iconic" bsStyle="link">
+                  <Icon type="pf" name="user" />{' '}
+                  <span className="dropdown-title">Brian Johnson</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <MenuItem>Preferences</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem eventKey="1">Preferences</MenuItem>
+                  <MenuItem eventKey="2">Logout</MenuItem>
                 </Dropdown.Menu>
               </Dropdown>
-            </VerticalNav.IconBar>
-          </VerticalNav.Masthead>
-          {this.renderMenuItems()}
+            </VerticalNavIconBar>
+          </VerticalNavMasthead>
+          {vertNavItems}
+          {/* <VerticalNavItem
+            key="abc"
+            title="Ipsum"
+            iconClass="fa fa-dashboard"
+            active
+            onClick={() => this.navigateTo('/')}
+          /> */}
         </VerticalNav>
-        {/* default route to /ipsum */}
-        <Redirect from="/" to="/ipsum" />
         {this.renderContent()}
-      </div>
+      </React.Fragment>
     );
   }
 }
+
+App.propTypes = {
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
+};
 
 export default withRouter(App);

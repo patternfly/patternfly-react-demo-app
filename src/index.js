@@ -1,21 +1,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import App from './App';
 
-import { baseName } from './routes';
-
-const store = createStore((state = []) => {
-  return state;
-});
+const store = createStore((state = []) => state);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router basename={baseName}>
+    <Router>
       <App />
     </Router>
   </Provider>,
