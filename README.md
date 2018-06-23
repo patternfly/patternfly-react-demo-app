@@ -2,7 +2,10 @@
 
 The PatternFly React demo app serves as a demo for building your production app with [Patternfly](https://github.com/patternfly/patternfly), [PatternFly React](https://github.com/patternfly/patternfly-react), [Redux](https://github.com/reactjs/redux), and [React Router](https://github.com/ReactTraining/react-router).
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and the `2.0.0-next` version of [react-scripts](https://github.com/facebook/create-react-app/tree/next/packages/react-scripts). This version uses Webpack 4+ which will enable [Tree Shaking](https://webpack.js.org/guides/tree-shaking/) performance optimizations in the build output.
+Running demo:
+https://patternfly-react-demo-app.firebaseapp.com/#/
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 The most recent version of the create-react-app guide can be found [here](https://github.com/facebookincubator/create-react-app#user-guide) for further customizations to this boilerplate.
 
