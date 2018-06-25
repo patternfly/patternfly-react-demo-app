@@ -114,6 +114,14 @@ OR
 
 More information on prettier for vscode can be found here: https://github.com/prettier/prettier-vscode
 
+### Other Demos
+
+We have some other demos of PatternFly React in the following branches. These provide some other examples of how to use PatternFly React in your application.
+
+- [Redux Saga](https://github.com/patternfly/patternfly-react-demo-app/tree/redux-saga) - using Redux Saga and adding a login page in the PatternFly React Demo app boilerplate
+- [Typescript](https://github.com/patternfly/patternfly-react-demo-app/tree/typescript) - using Typescript with the PatternFly React Demo app boilerplate
+- [Flow JS](https://github.com/patternfly/patternfly-react-demo-app/tree/flowjs) - using Flow JS with the PatternFly React Demo app boilerplate
+
 ## Do you have a question?
 
 There are a few things that can be done to resolve any questions or problems you might have.
