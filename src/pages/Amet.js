@@ -12,7 +12,7 @@ const rowActions = [
 ];
 
 const AmetPage = () => (
-  <Grid className="container-pf-nav-pf-vertical">
+  <Grid fluid className="container-pf-nav-pf-vertical">
     <Grid.Row>
       <Grid.Col xs={12}>
         <div className="page-header">
