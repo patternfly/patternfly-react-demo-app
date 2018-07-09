@@ -6,10 +6,7 @@ import {
   VerticalNav,
   VerticalNavItem,
   VerticalNavSecondaryItem,
-  VerticalNavMasthead,
-  VerticalNavBrand,
-  VerticalNavIconBar,
-  Dropdown,
+  Masthead,
   Icon,
   MenuItem
 } from 'patternfly-react';
@@ -19,6 +16,10 @@ import { routes } from './routes';
 import './App.css';
 
 class App extends React.Component {
+  state = {
+    collapse: false
+  };
+
   constructor() {
     super();
 
@@ -63,6 +64,10 @@ class App extends React.Component {
     );
   };
 
+  onCollapse = () => {
+    this.setState({ collapse: !this.state.collapse });
+  };
+
   navigateTo = path => {
     const { history } = this.props;
     history.push(path);
@@ -95,49 +100,43 @@ class App extends React.Component {
       </VerticalNavItem>
     ));
 
-    const dropdownComponentClass = props => (
-      <li className={props.className}>{props.children}</li>
-    );
-
     return (
       <React.Fragment>
-        <VerticalNav persistentSecondary={false}>
-          <VerticalNavMasthead>
-            <VerticalNavBrand titleImg={pfBrand} iconImg={pfLogo} />
-            <VerticalNavIconBar>
-              <Dropdown componentClass={dropdownComponentClass} id="help">
-                <Dropdown.Toggle
-                  className="nav-item-iconic"
-                  bsStyle="link"
-                  noCaret
-                >
-                  <Icon type="pf" name="help" />
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <MenuItem eventKey="1">Help</MenuItem>
-                  <MenuItem eventKey="2">About</MenuItem>
-                </Dropdown.Menu>
-              </Dropdown>
-              <Dropdown componentClass={dropdownComponentClass} id="user">
-                <Dropdown.Toggle className="nav-item-iconic" bsStyle="link">
-                  <Icon type="pf" name="user" />{' '}
-                  <span className="dropdown-title">Brian Johnson</span>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <MenuItem eventKey="1">Preferences</MenuItem>
-                  <MenuItem eventKey="2">Logout</MenuItem>
-                </Dropdown.Menu>
-              </Dropdown>
-            </VerticalNavIconBar>
-          </VerticalNavMasthead>
+        <Masthead
+          iconImg={pfLogo}
+          titleImg={pfBrand}
+          title="PatternFly React Demo App"
+          onNavToggleClick={() => this.onCollapse()}
+        >
+          <Masthead.Collapse>
+            <Masthead.Dropdown
+              id="app-help-dropdown"
+              noCaret
+              title={<span title="Help" className="pficon pficon-help" />}
+            >
+              <MenuItem eventKey="1">Help</MenuItem>
+              <MenuItem eventKey="2">About</MenuItem>
+            </Masthead.Dropdown>
+            <Masthead.Dropdown
+              id="app-user-dropdown"
+              title={[
+                <Icon type="pf" name="user" key="user-icon" />,
+                <span className="dropdown-title" key="dropdown-title">
+                  Brian Johnson
+                </span>
+              ]}
+            >
+              <MenuItem eventKey="1">User Preferences</MenuItem>
+              <MenuItem eventKey="2">Logout</MenuItem>
+            </Masthead.Dropdown>
+          </Masthead.Collapse>
+        </Masthead>
+        <VerticalNav
+          persistentSecondary={false}
+          hideMasthead
+          navCollapsed={this.state.collapse}
+        >
           {vertNavItems}
-          {/* <VerticalNavItem
-            key="abc"
-            title="Ipsum"
-            iconClass="fa fa-dashboard"
-            active
-            onClick={() => this.navigateTo('/')}
-          /> */}
         </VerticalNav>
         {this.renderContent()}
       </React.Fragment>
