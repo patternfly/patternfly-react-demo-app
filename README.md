@@ -21,6 +21,20 @@ yarn build
 yarn start
 ```
 
+## Deployment
+You can deploy the app to Open Shift using the following commands:
+
+```
+oc new-project patternfly-react
+find . | grep openshiftio | grep application | xargs -n 1 oc apply -f
+oc new-app --template demo-app -p SOURCE_REPOSITORY_URL=https://github.com/patternfly/patternfly-react-demo-app
+```
+
+You can also create a Docker image using the following:
+```
+yarn docker:build
+```
+
 ## Folder Structure
 
 This project has the following structure:
