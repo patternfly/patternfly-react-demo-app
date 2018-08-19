@@ -1,19 +1,20 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { HashRouter as Router } from 'react-router-dom';
-import { createStore } from 'redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import registerServiceWorker from './registerServiceWorker';
-import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import 'patternfly/dist/css/rcue.css';
+import 'patternfly/dist/css/rcue-additions.css';
+import './styles/.css/index.css';
 
-const store = createStore((state = []) => state);
+import App from './App';
+import { baseName } from './routes';
+import store from './redux/store';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <BrowserRouter basename={baseName}>
       <App />
-    </Router>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
-registerServiceWorker();

@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+
 import { baseName } from './routes';
+import store from './redux/store';
 import App from './App';
 
-const store = createStore((state = []) => state);
+// const store = createStore((state = []) => state);
 
 it('renders without crashing', () => {
   // Would you like to debug Jest tests in Chrome? See the following note:
@@ -14,9 +15,9 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <Provider store={store}>
-      <Router basename={baseName}>
+      <BrowserRouter basename={baseName}>
         <App />
-      </Router>
+      </BrowserRouter>
     </Provider>,
     div
   );

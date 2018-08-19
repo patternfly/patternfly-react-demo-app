@@ -2,35 +2,56 @@
 
 The PatternFly React demo app serves as a demo for building your production app with [Patternfly](https://github.com/patternfly/patternfly), [PatternFly React](https://github.com/patternfly/patternfly-react), [Redux](https://github.com/reactjs/redux), and [React Router](https://github.com/ReactTraining/react-router).
 
-Running demo:
-https://patternfly-react-demo-app.firebaseapp.com/#/
-
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 The most recent version of the create-react-app guide can be found [here](https://github.com/facebookincubator/create-react-app#user-guide) for further customizations to this boilerplate.
+
+## PatternFly React Product Demo App
+
+This version of the PatternFly React demo app is intended to be used as a base template for building Red Hat products with PatternFly React.
+
+Some additional features in this version of the demo app are the following:
+
+- The [RCUE](https://redhat-rcue.github.io/) styling is used to promote portfolio consistency.
+- [APIDOC](http://apidocjs.com/) is used to generate and document RESTful API services.
+- `yarn start` is used to start the production server. `yarn start:dev` is used for development.
+
+### ENV Files and Debugging Redux
+
+This project makes use of [dotenv](https://github.com/motdotla/dotenv) files to handle multi environment configuration. Create React App supports env files by default (details [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-development-environment-variables-in-env)). To enable Redux console logging, within the repository root directory, add a `.env.local` (dotenv) file with the follow line
+
+```
+REACT_APP_DEBUG_MIDDLEWARE=true
+```
+
+Once you've made the change, restart the project and console browser logging should appear.
+
+_Any changes you make to the `.env.local` file should be ignored with `.gitignore`._
 
 ## Quick Setup
 
 **Note** If you do not have yarn installed run: `npm install -g yarn`
 
-Run the following commands:
+Run the following commands to start development:
 
 ```
 yarn install
 yarn build
-yarn start
+yarn start:dev
 ```
 
 ## Deployment
+
 You can deploy the app to Open Shift using the following commands:
 
 ```
-oc new-project patternfly-react
+oc new-project rcue
 find . | grep openshiftio | grep application | xargs -n 1 oc apply -f
-oc new-app --template demo-app -p SOURCE_REPOSITORY_URL=https://github.com/patternfly/patternfly-react-demo-app
+oc new-app --template react-demo-app -p SOURCE_REPOSITORY_URL=https://github.com/patternfly/patternfly-react-demo-app -p SOURCE_REPOSITORY_REF=rcue
 ```
 
 You can also create a Docker image using the following:
+
 ```
 yarn docker:build
 ```
@@ -41,26 +62,37 @@ This project has the following structure:
 
 ```shell
 .
+├── /.openshiftio/              # OpenShift deployment template
+├── /.vscode/                   # VSCode IDE settings
 ├── /build/                     # Compiled build output
 │   ├── /static/                # Compressed static assets (css,js,img)
 │   ├── /index.html             # Compressed index.html
+├── /coverage/                  # Jest Code Coverage
+├── /deployment/                # Docker Nginx server configuration
 ├── /node_modules/              # 3rd-party libraries and utilities
 ├── /public/                    # Static files such as favicon.ico etc.
 │   ├── /index.html             # Customizable index.html
 │   ├── favicon.ico             # Application icon to be displayed in bookmarks
 ├── /src/                       # Core application source
+│   ├── /common/                # Global utilities
 │   ├── /components/            # Shared React UI components
+│   ├── /constants/             # Application constants
 │   ├── /fonts/                 # Fonts to be included in Webpack bundle
 │   ├── /img/                   # Images to be included in Webpack bundle
 │   ├── /pages/                 # Reusable page templates used in various routes
-│   ├── /App.scss               # Application SCSS
-│   ├── /App.test.js            # Application tests written in Jest
+│   ├── /redux/                 # Redux actions, constants, middlewares, reducers
+│   ├── /router/                # Application Router
+│   ├── /router/                # Application Services
+│   ├── /styles/                # Sass Styles
+│   ├── /App.test.js            # Application tests
 │   ├── /App.js                 # Application UI Component
 │   ├── /index.js               # Main React container entry
 │   ├── /logo.svg               # Application logo
-│   ├── /registerServiceWorker  # sw-precache-webpack-plugin
 │   ├── /routes.js              # React Router application routes
+│── .env.*                      # Environment configuration files
+│── .eslintrc.js                # ESLINT rules and configuration
 │── package.json                # The list of project dependencies and NPM scripts
+│── Dockerfile                  # Dockerfile used in constructing Docker image
 │── yarn.lock                   # Yarn package lock file
 ```
 
@@ -75,7 +107,7 @@ create-react-app build. The `App.scss` file will include all PatternFly Sass alo
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn start:dev`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
