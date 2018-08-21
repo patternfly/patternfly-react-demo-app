@@ -14,7 +14,7 @@ Some additional features in this version of the demo app are the following:
 
 - The [RCUE](https://redhat-rcue.github.io/) styling is used to promote portfolio consistency.
 - [APIDOC](http://apidocjs.com/) is used to generate and document RESTful API services.
-- `yarn start` is used to start the production server. `yarn start:dev` is used for development.
+- `yarn start` is used only to override the production s2i (by default, the [bucharest-gold](https://github.com/bucharest-gold/centos7-s2i-web-app) OpenShift Builder image will serve the `build` directory). `yarn start:dev` is used for development.
 
 ### ENV Files and Debugging Redux
 
