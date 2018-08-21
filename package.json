@@ -42,7 +42,6 @@
     "build-css": "node-sass-chokidar src/ --output-style compressed $npm_package_sassIncludes_src $npm_package_sassIncludes_patternfly $npm_package_sassIncludes_patternflyReact $npm_package_sassIncludes_bootstrap $npm_package_sassIncludes_fontAwesome -o src/",
     "watch-css": "yarn build-css && node-sass-chokidar src/ --output-style compressed $npm_package_sassIncludes_src $npm_package_sassIncludes_patternfly $npm_package_sassIncludes_patternflyReact $npm_package_sassIncludes_bootstrap $npm_package_sassIncludes_fontAwesome -o src/ --watch --recursive",
     "build-js": "react-scripts build",
-    "start": "react-scripts start",
     "start:dev": "npm-run-all -p watch-css start-js",
     "build": "yarn copy-fonts && yarn copy-img && yarn build-css && yarn build-js; yarn postbuild;",
     "test": "yarn lint && react-scripts test --env=jsdom --watch",
