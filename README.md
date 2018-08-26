@@ -18,10 +18,13 @@ Run the following commands:
 ```
 yarn install
 yarn build
-yarn start
+yarn start:dev
 ```
 
+Note: `yarn start` is used only to override the production s2i (by default, the [bucharest-gold](https://github.com/bucharest-gold/centos7-s2i-web-app) OpenShift Builder image will serve the `build` directory).
+
 ## Deployment
+
 You can deploy the app to Open Shift using the following commands:
 
 ```
@@ -31,6 +34,7 @@ oc new-app --template demo-app -p SOURCE_REPOSITORY_URL=https://github.com/patte
 ```
 
 You can also create a Docker image using the following:
+
 ```
 yarn docker:build
 ```
@@ -132,6 +136,7 @@ More information on prettier for vscode can be found here: https://github.com/pr
 
 We have some other demos of PatternFly React in the following branches. These provide some other examples of how to use PatternFly React in your application.
 
+- [RCUE Product Demo](https://github.com/patternfly/patternfly-react-demo-app/tree/rcue) - this is an [RCUE](https://redhat-rcue.github.io/) variation of the PF React Demo App which can be used as a jumpstart boiler for building RCUE based products.
 - [Redux Saga](https://github.com/patternfly/patternfly-react-demo-app/tree/redux-saga) - using Redux Saga and adding a login page in the PatternFly React Demo app boilerplate
 - [Typescript](https://github.com/patternfly/patternfly-react-demo-app/tree/typescript) - using Typescript with the PatternFly React Demo app boilerplate
 - [Flow JS](https://github.com/patternfly/patternfly-react-demo-app/tree/flowjs) - using Flow JS with the PatternFly React Demo app boilerplate
