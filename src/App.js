@@ -70,30 +70,32 @@ class App extends React.Component {
 
   render() {
     const { location } = this.props;
-    const activeItem = this.menu.find(
-      item => location.pathname.indexOf(item.to) > -1
-    );
-
-    const vertNavItems = this.menu.map(item => (
-      <VerticalNavItem
-        key={item.to}
-        title={item.title}
-        iconClass={item.iconClass}
-        active={item === activeItem}
-        onClick={() => this.navigateTo(item.to)}
-      >
-        {item.subItems &&
-          item.subItems.map(secondaryItem => (
-            <VerticalNavSecondaryItem
-              key={secondaryItem.to}
-              title={secondaryItem.title}
-              iconClass={secondaryItem.iconClass}
-              active={secondaryItem.to === location.pathname}
-              onClick={() => this.navigateTo(secondaryItem.to)}
-            />
-          ))}
-      </VerticalNavItem>
-    ));
+    const vertNavItems = this.menu.map(item => {
+      const active = location.pathname === item.to;
+      const subItemActive = item.subItems && item.subItems.some(
+        item => location.pathname === item.to
+      );
+      return (
+        <VerticalNavItem
+          key={item.to}
+          title={item.title}
+          iconClass={item.iconClass}
+          active={active || subItemActive}
+          onClick={() => this.navigateTo(item.to)}
+        >
+          {item.subItems &&
+            item.subItems.map(secondaryItem => (
+              <VerticalNavSecondaryItem
+                key={secondaryItem.to}
+                title={secondaryItem.title}
+                iconClass={secondaryItem.iconClass}
+                active={secondaryItem.to === location.pathname}
+                onClick={() => this.navigateTo(secondaryItem.to)}
+              />
+            ))}
+        </VerticalNavItem>
+      );
+    });
 
     const dropdownComponentClass = props => (
       <li className={props.className}>{props.children}</li>
