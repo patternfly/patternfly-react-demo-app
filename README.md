@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This project is no longer active and was used for PF3 implementations. Please see [patternfly-react-seed](https://github.com/patternfly/patternfly-react-seed) for PF4 demos.
+
 # patternfly-react-demo-app
 
 The PatternFly React demo app serves as a demo for building your production app with [Patternfly](https://github.com/patternfly/patternfly), [PatternFly React](https://github.com/patternfly/patternfly-react), [Redux](https://github.com/reactjs/redux), and [React Router](https://github.com/ReactTraining/react-router).
